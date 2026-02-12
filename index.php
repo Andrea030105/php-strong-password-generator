@@ -1,15 +1,11 @@
 <?php
 
+include __DIR__ . "/function.php";
+
 if (isset($_GET['length-pass']) && $_GET['length-pass'] !== '') {
     $lengthPass = $_GET['length-pass'];
     $fullPass = randomPass($lengthPass);
 }
-function randomPass($length)
-{
-    $pass = random_bytes($length);
-    return bin2hex($pass);
-}
-
 
 ?>
 
