@@ -1,5 +1,16 @@
 <?php
 
+if (isset($_GET['length-pass']) && $_GET['length-pass'] !== '') {
+    $lengthPass = $_GET['length-pass'];
+    $fullPass = randomPass($lengthPass);
+}
+function randomPass($length)
+{
+    $pass = random_bytes($length);
+    return bin2hex($pass);
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -38,17 +49,30 @@
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="container bg-white my-3 p-5">
         <div class="row">
             <div class="col">
-                <div class="bg-white my-3 p-5 d-flex justify-content-around">
-                    <p>
+                <div class="d-flex justify-content-center">
+                    <p class="mx-5">
                         Lunghezza password:
                     </p>
-                    <form action="./index.php" method="GET">
-                        <input type="number">
+                    <form action="./index.php" method="GET" class="w-75 d-flex justify-content-center">
+                        <input class="w-50" type="number" name="length-pass" min="1" max="10" placeholder="Inserisci la lunghezza che vuoi">
+                        <button class="btn-primary mx-3" type="submit">
+                            Submit
+                        </button>
                     </form>
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col d-flex justify-content-center align-items-center">
+                <h1 class="m-0 my-5">
+                    La tua Password è:
+                    <?php
+                    echo $fullPass;
+                    ?>
+                </h1>
             </div>
         </div>
     </div>
