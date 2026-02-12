@@ -1,4 +1,7 @@
 <?php
+session_start();
+
+
 
 ?>
 
@@ -29,23 +32,42 @@
             </div>
         </div>
     </div>
-    <div class="container bg-white my-3 p-5">
+    <div class="container">
         <div class="row">
             <div class="col">
-                <div class="d-flex justify-content-center">
-                    <p class="mx-5">
-                        Lunghezza password:
-                    </p>
-                    <form action="./password.php" method="GET" class="w-75 d-flex justify-content-center">
-                        <input class="w-50" type="number" name="length-pass" min="8" max="32" placeholder="Inserisci la lunghezza che vuoi">
-                        <button class="btn-primary mx-3" type="submit">
-                            Submit
-                        </button>
-                    </form>
+                <?php
+                if (isset($_SESSION['error'])) {
+                ?>
+                    <div class="container-text bg-info p-3 d-flex align-items-center rounded">
+                        <p class="m-0">
+                            <?php
+                            echo $_SESSION['error'];
+                            unset($_SESSION['error']);
+                            ?>
+                        </p>
+                    </div>
+                <?php
+                }
+                ?>
+            </div>
+        </div>
+        <div class="container bg-white my-3 p-5">
+            <div class="row">
+                <div class="col">
+                    <div class="d-flex justify-content-center">
+                        <p class="mx-5">
+                            Lunghezza password:
+                        </p>
+                        <form action="./password.php" method="GET" class="w-75 d-flex justify-content-center">
+                            <input class="w-50" type="number" name="length-pass" min="8" max="32" placeholder="Inserisci la lunghezza che vuoi">
+                            <button class="btn-primary mx-3" type="submit">
+                                Submit
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 </body>
 
 </html>
